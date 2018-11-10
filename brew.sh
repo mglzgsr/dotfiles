@@ -95,5 +95,33 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
+# Customisations by @iskandar
+# https://github.com/adobe-fonts/source-code-pro
+brew tap caskroom/fonts
+brew cask install font-source-code-pro
+# https://sourcefoundry.org/hack/
+brew cask install caskroom/fonts/font-hack
+# Various utils
+brew install htop
+brew install watch
+brew install ncdu
+brew install speedtest_cli
+brew install node
+brew install jq
+brew install thefuck
+brew install youtube-dl
+# https://github.com/PowerShell/PowerShell
+brew cask install powershell
+# Cloud CLIs
+brew install awscli
+brew cask install google-cloud-sdk
+# Larger apps
+brew cask install cheatsheet
+brew cask install vlc
+brew cask install java # requires password
+brew cask install xquartz
+sbrew cask install spectacle
+# brew cask install spotify
+
 # Remove outdated versions from the cellar.
 brew cleanup

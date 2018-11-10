@@ -3,14 +3,16 @@
 # set -x
 
 DESIRED=${1:-work}
-BASTION_KEY=~/.ssh/balabit_rsa
-DC=lon5
+# These vars must be set elsewhere (in .exports, maybe)
+WORK_DC=lon5
+WORK_BASTION_KEY=$HOME/.ssh/balabit_rsa
+WORK_BASTION_HOST=cbast.${WORK_DC}.corp.rackspace.net
 
 USERNAME=$(whoami)
-BASTION=cbast.${DC}.corp.rackspace.net
-SSH_DIR=~/.ssh
+SSH_DIR=$HOME/.ssh
 
-echo "----> Creating 'home' config file"
+echo "----> Creating SSH config files"
+echo "  ==> 'home'"
 cat > ${SSH_DIR}/config-home <<EOF
 ##
 # SSH 'home' config generated $(date)
@@ -20,7 +22,7 @@ Host localhost
      ProxyCommand none
 EOF
 
-echo "----> Creating 'work' config file"
+echo "  ==> 'work'"
 cat > ${SSH_DIR}/config-work <<EOF
 ##
 # SSH 'work' config generated $(date)
@@ -32,10 +34,10 @@ Host localhost
 # RSA Logins: helpful links that match your preferred HostName below.
 # You will need to make sure you are authenticated to the endpoint 
 # in your datacenter, otherwise you won't be able to connect.
-#  https://auth.${DC}.gateway.rackspace.com/netaccess/connstatus.html
+#  https://auth.${WORK_DC}.gateway.rackspace.com/netaccess/connstatus.html
 
 Host bastion
-    Hostname ${BASTION}
+    Hostname ${WORK_BASTION_HOST}
     ForwardAgent yes
     ForwardX11Trusted yes
     ProxyCommand none
@@ -52,7 +54,7 @@ Host bastion
     # ControlPersist 10h
 
 Host *
-    ProxyCommand ssh -A -i ${BASTION_KEY} 'nc %h %p'
+    ProxyCommand ssh -A -i ${WORK_BASTION_KEY} 'nc %h %p'
     ForwardX11Trusted yes
     GSSAPIAuthentication no
     StrictHostKeyChecking no
@@ -63,9 +65,23 @@ Host *
 
 EOF
 
+
 pushd $SSH_DIR > /dev/null
 echo "----> Setting config to '$DESIRED' in $SSH_DIR"
 cp -f config-$DESIRED config
 popd > /dev/null
 
-echo "==>   Done"
+echo "----> Resetting SSH Agent list"
+case $DESIRED in
+home)
+    SSH_KEY_LIST="$HOME/.ssh/id_rsa"
+    ;;
+work)
+    SSH_KEY_LIST="$HOME/.ssh/id_rsa ${WORK_BASTION_KEY}"
+esac
+ssh-add -D
+ssh-add $SSH_KEY_LIST
+echo "  ==> Identities:"
+ssh-add -l
+
+echo "----> Done"
