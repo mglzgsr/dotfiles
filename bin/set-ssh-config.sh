@@ -32,7 +32,7 @@ Host localhost
      ProxyCommand none
 
 # RSA Logins: helpful links that match your preferred HostName below.
-# You will need to make sure you are authenticated to the endpoint 
+# You will need to make sure you are authenticated to the endpoint
 # in your datacenter, otherwise you won't be able to connect.
 #  https://auth.${WORK_DC}.gateway.rackspace.com/netaccess/connstatus.html
 
@@ -74,7 +74,7 @@ popd > /dev/null
 echo "----> Resetting SSH Agent list"
 case $DESIRED in
 home)
-    SSH_KEY_LIST="$HOME/.ssh/id_rsa"
+    SSH_KEY_LIST="$HOME/.ssh/id_rsa ${WORK_BASTION_KEY}"
     ;;
 work)
     SSH_KEY_LIST="$HOME/.ssh/id_rsa ${WORK_BASTION_KEY}"
@@ -82,6 +82,5 @@ esac
 ssh-add -D
 ssh-add $SSH_KEY_LIST
 echo "  ==> Identities:"
-ssh-add -l
-
+ssh-add -l -E md5
 echo "----> Done"

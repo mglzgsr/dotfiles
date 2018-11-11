@@ -112,6 +112,8 @@ brew install thefuck
 brew install youtube-dl
 # https://github.com/PowerShell/PowerShell
 brew cask install powershell
+brew cask install dotnet
+
 # Cloud CLIs
 brew install awscli
 brew cask install google-cloud-sdk
@@ -120,7 +122,7 @@ brew cask install cheatsheet
 brew cask install vlc
 brew cask install java # requires password
 brew cask install xquartz
-sbrew cask install spectacle
+brew cask install spectacle
 # brew cask install spotify
 
 # Remove outdated versions from the cellar.
