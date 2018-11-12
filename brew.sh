@@ -96,6 +96,7 @@ brew install vbindiff
 brew install zopfli
 
 # Customisations by @iskandar
+brew install python3
 # https://github.com/adobe-fonts/source-code-pro
 brew tap caskroom/fonts
 brew cask install font-source-code-pro
