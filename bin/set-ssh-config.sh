@@ -54,7 +54,7 @@ Host bastion
     # ControlPersist 10h
 
 Host *
-    ProxyCommand ssh -A -i ${WORK_BASTION_KEY} 'nc %h %p'
+    ProxyCommand ssh -A bastion 'nc %h %p'
     ForwardX11Trusted yes
     GSSAPIAuthentication no
     StrictHostKeyChecking no
