@@ -21,10 +21,10 @@ brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 # Install Bash 4.
 brew install bash
-brew install bash-completion2
+brew install bash-completion@2
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
@@ -33,17 +33,17 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
 fi;
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+brew install wget 
 
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
 
 # Install more recent versions of some macOS tools.
-brew install vim --with-override-system-vi
+brew install vim 
 brew install grep
 brew install openssh
 brew install screen
-brew install homebrew/php/php56 --with-gmp
+# brew install homebrew/php/php56
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -82,7 +82,7 @@ brew install ack
 #brew install exiv2
 brew install git
 brew install git-lfs
-brew install imagemagick --with-webp
+brew install imagemagick
 brew install lua
 brew install lynx
 brew install p7zip
@@ -98,10 +98,10 @@ brew install zopfli
 # Customisations by @iskandar
 brew install python3
 # https://github.com/adobe-fonts/source-code-pro
-brew tap caskroom/fonts
-brew cask install font-source-code-pro
+brew tap homebrew/cask-fonts
+brew install font-source-code-pro --cask
 # https://sourcefoundry.org/hack/
-brew cask install caskroom/fonts/font-hack
+brew install caskroom/fonts/font-hack --cask
 # Various utils
 brew install htop
 brew install watch
@@ -109,22 +109,22 @@ brew install ncdu
 brew install speedtest_cli
 brew install node
 brew install jq
-brew install thefuck
+# brew install thefuck
 brew install youtube-dl
 # https://github.com/PowerShell/PowerShell
-brew cask install powershell
-brew cask install dotnet
+brew install powershell --cask
+brew install dotnet --cask
 
 # Cloud CLIs
 brew install awscli
-brew cask install google-cloud-sdk
+brew install google-cloud-sdk --cask
 # Larger apps
-brew cask install cheatsheet
-brew cask install vlc
-brew cask install java # requires password
-brew cask install xquartz
-brew cask install spectacle
-# brew cask install spotify
+brew install cheatsheet --cask
+brew install vlc --cask
+brew install java --cask # requires password
+# brew install xquartz --cask
+brew install spectacle --cask
+# brew install spotify --cask
 
 # Remove outdated versions from the cellar.
 brew cleanup
