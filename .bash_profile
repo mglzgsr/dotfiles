@@ -48,10 +48,13 @@ complete -W "NSGlobalDomain" defaults;
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
 # https://github.com/nvbn/thefuck/wiki/Shell-aliases
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/mlii/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/mlii/Downloads/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '/Users/miguel.izaga/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/miguel.izaga/Downloads/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/mlii/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/mlii/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f '/Users/miguel.izaga/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/miguel.izaga/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# Adding HomeBrew to the PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
